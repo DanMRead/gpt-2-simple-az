@@ -14,11 +14,20 @@ import time
 from datetime import datetime
 import csv
 import argparse
+from azureml.core import run
 
 # if in Google Colaboratory
 try:
     from google.colab import drive
 except:
+    pass
+
+# are we in Azure Machine Learning?
+azml = False
+run = Run.get_context()
+if 'SubmittedRun' in run.identity:
+    azml = True
+else:
     pass
 
 from gpt_2_simple.src import model, sample, encoder, memory_saving_gradients
@@ -29,6 +38,7 @@ assert tf.__version__ < '2.0.0', "gpt-2-simple currently does not support " \
     "TensorFlow 2.0. You'll need to use a virtualenv/cloud computer which " \
     "has Tensorflow 1.X on it."
 
+Print("Using gpt-2-az!")
 
 def download_file_with_progress(url_base, sub_dir, model_name, file_name):
     """General utility for incrementally downloading files from the internet
@@ -260,6 +270,7 @@ def finetune(sess,
     chunks = load_dataset(enc, dataset, combine)
     data_sampler = Sampler(chunks)
     print('dataset has', data_sampler.total_size, 'tokens')
+    if azml: run.log('tokens', data_sampler.total_size)
     print('Training...')
 
     counter = 1
@@ -269,6 +280,9 @@ def finetune(sess,
         # Add 1 so we don't immediately try to save again
         with open(counter_path, 'r') as fp:
             counter = int(fp.read()) + 1
+            if azml: run.log('counter', counter)
+    else:
+        if azml: run.log('counter', counter)
     counter_base = counter
 
     def save():
@@ -342,6 +356,11 @@ def finetune(sess,
                     feed_dict={context: sample_batch()})
 
             summary_log.add_summary(v_summary, counter)
+
+            if azml: 
+                run.log('counter', counter)
+                run.log('time', time)
+                run.log('loss', v_loss)
 
             if counter % print_every == 0:
                 avg_loss = (avg_loss[0] * 0.99 + v_loss,

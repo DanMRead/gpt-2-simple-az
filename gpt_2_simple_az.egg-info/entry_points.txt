@@ -1,0 +1,3 @@
+[console_scripts]
+gpt_2_simple_az = gpt_2_simple_az.gpt_2:cmd
+

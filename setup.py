@@ -1,7 +1,9 @@
 from setuptools import setup
 
 long_description = """
-A simple Python package that wraps existing model fine-tuning and generation scripts for OpenAI GPT-2 text generation model (specifically the "small", 124M hyperparameter version). Additionally, this package allows easier generation of text, generating to a file for easy curation, allowing for prefixes to force the text to start with a given phrase.
+A fork of gpt-2-simple, which aims to add Azure Machine Learning functionality.
+
+gpt-2-simple is a simple Python package that wraps existing model fine-tuning and generation scripts for OpenAI GPT-2 text generation model (specifically the "small", 124M hyperparameter version). Additionally, this package allows easier generation of text, generating to a file for easy curation, allowing for prefixes to force the text to start with a given phrase.
 
 ## Usage
 
@@ -10,7 +12,7 @@ An example for downloading the model to the local system, fineturning it on a da
 Warning: the pretrained model, and thus any finetuned model, is 500 MB!
 
 ```python
-import gpt_2_simple as gpt2
+import gpt_2_simple_az as gpt2
 
 gpt2.download_gpt2()   # model is saved into current directory under /models/124M/
 
@@ -45,9 +47,9 @@ NB: *Restart the Python session first* if you want to finetune on another datase
 
 
 setup(
-    name="gpt_2_simple",
-    packages=["gpt_2_simple"],  # this must be the same as the name above
-    version="0.7.2",
+    name="gpt_2_simple_az",
+    packages=["gpt_2_simple_az"],  # this must be the same as the name above
+    version="0.7.2(base)",
     description="Python package to easily retrain OpenAI's GPT-2 "
     "text-generating model on new texts.",
     long_description=long_description,
@@ -59,7 +61,7 @@ setup(
     classifiers=[],
     license="MIT",
     entry_points={
-        "console_scripts": ["gpt_2_simple=gpt_2_simple.gpt_2:cmd"],
+        "console_scripts": ["gpt_2_simple_az=gpt_2_simple_az.gpt_2:cmd"],
     },
     python_requires=">=3.6",
     include_package_data=True,
