@@ -14,7 +14,7 @@ import time
 from datetime import datetime
 import csv
 import argparse
-from azureml.core import run
+from azureml.core import Run
 
 # if in Google Colaboratory
 try:
