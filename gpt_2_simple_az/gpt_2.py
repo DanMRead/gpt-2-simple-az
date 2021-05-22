@@ -30,15 +30,15 @@ if 'SubmittedRun' in run.identity:
 else:
     pass
 
-from gpt_2_simple.src import model, sample, encoder, memory_saving_gradients
-from gpt_2_simple.src.load_dataset import load_dataset, Sampler
-from gpt_2_simple.src.accumulate import AccumulatingOptimizer
+from gpt_2_simple_az.src import model, sample, encoder, memory_saving_gradients
+from gpt_2_simple_az.src.load_dataset import load_dataset, Sampler
+from gpt_2_simple_az.src.accumulate import AccumulatingOptimizer
 
 assert tf.__version__ < '2.0.0', "gpt-2-simple currently does not support " \
     "TensorFlow 2.0. You'll need to use a virtualenv/cloud computer which " \
     "has Tensorflow 1.X on it."
 
-Print("Using gpt-2-az!")
+print("Using gpt-2-az!")
 
 def download_file_with_progress(url_base, sub_dir, model_name, file_name):
     """General utility for incrementally downloading files from the internet

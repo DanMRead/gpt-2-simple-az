@@ -16,3 +16,10 @@ gpt_2_simple_az/src/load_dataset.py
 gpt_2_simple_az/src/memory_saving_gradients.py
 gpt_2_simple_az/src/model.py
 gpt_2_simple_az/src/sample.py
+gpt_2_simple_az/src/__pycache__/__init__.cpython-36.pyc
+gpt_2_simple_az/src/__pycache__/accumulate.cpython-36.pyc
+gpt_2_simple_az/src/__pycache__/encoder.cpython-36.pyc
+gpt_2_simple_az/src/__pycache__/load_dataset.cpython-36.pyc
+gpt_2_simple_az/src/__pycache__/memory_saving_gradients.cpython-36.pyc
+gpt_2_simple_az/src/__pycache__/model.cpython-36.pyc
+gpt_2_simple_az/src/__pycache__/sample.cpython-36.pyc
