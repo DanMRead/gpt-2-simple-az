@@ -1,3 +1,6 @@
+# gpt-2-simple-az
+A fork of gpt-2-simple by Max Woolf (https://github.com/minimaxir) which aims to add Azure Machine Learning functionality into the original code, including live metric reporting.
+
 # gpt-2-simple
 
 ![gen_demo](docs/gen_demo.png)
