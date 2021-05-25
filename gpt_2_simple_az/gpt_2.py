@@ -313,6 +313,8 @@ def finetune(sess,
                 all_text.append(text)
                 index += 1
         print(text)
+        if azml:
+            run.log('sample', text)
         maketree(os.path.join(SAMPLE_DIR, run_name))
         with open(
                 os.path.join(SAMPLE_DIR, run_name,
@@ -358,8 +360,11 @@ def finetune(sess,
             summary_log.add_summary(v_summary, counter)
 
             if azml: 
+                prevTime = currentTime
+                currentTime = time.time() - start_time
                 run.log('counter', counter)
-                run.log('time', time)
+                run.log('time', currentTime)
+                run.log('interval', currentTime - prevTime)
                 run.log('loss', v_loss)
 
             if counter % print_every == 0:
